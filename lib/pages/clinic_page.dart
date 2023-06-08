@@ -5,6 +5,16 @@ class ClinicPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Text(
+          "Clinic Page",
+          style: TextStyle(
+            fontSize: 28,
+            color: AppColors().black,
+          ),
+        ),
+      ),
+    );
   }
 }

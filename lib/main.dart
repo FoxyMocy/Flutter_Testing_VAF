@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors().lightBlue,
+          seedColor: AppColors().blue,
         ),
         useMaterial3: true,
         textTheme: GoogleFonts.nunitoTextTheme(),
@@ -28,10 +28,6 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/login',
           page: () => LoginPage(),
-        ),
-        GetPage(
-          name: '/register',
-          page: () => RegisterPage(),
         ),
         GetPage(
           name: '/main',

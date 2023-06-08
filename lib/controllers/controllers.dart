@@ -1,4 +1,4 @@
 import 'package:get/get.dart';
 
-part './form_controller.dart';
-part './boolean_controller.dart';
+part './login_controller.dart';
+part './bottom_navigation_controller.dart';
