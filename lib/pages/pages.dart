@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../themes/themes.dart';
+import '../controllers/controllers.dart';
 
 part './splash_screen.dart';
 part './register_page.dart';

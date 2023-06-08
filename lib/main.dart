@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors().lightBlue,
@@ -23,6 +24,20 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.nunitoTextTheme(),
       ),
       home: const SplashScreen(),
+      getPages: [
+        GetPage(
+          name: '/login',
+          page: () => LoginPage(),
+        ),
+        GetPage(
+          name: '/register',
+          page: () => RegisterPage(),
+        ),
+        GetPage(
+          name: '/main',
+          page: () => MainPage(),
+        )
+      ],
     );
   }
 }
