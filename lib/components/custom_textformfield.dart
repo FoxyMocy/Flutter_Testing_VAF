@@ -6,10 +6,9 @@ class CustomTextField extends StatelessWidget {
   String hintText;
   TextInputType inputType;
   IconData icon;
-  bool? isPassword;
-  
+
   CustomTextField(
-      {this.isPassword,
+      {
       required this.validate,
       required this.onchange,
       required this.hintText,
@@ -45,20 +44,6 @@ class CustomTextField extends StatelessWidget {
               onChanged: onchange,
             ),
           ),
-          isPassword!
-              ? GestureDetector(
-                  onTap: () {
-                    _loginController.toggleObsecure();
-                    print(_loginController.obsecureText.value);
-                  },
-                  child: Icon(
-                    _loginController.obsecureText.value
-                        ? Icons.visibility_off_rounded
-                        : Icons.visibility_rounded,
-                    color: AppColors().lightBlue,
-                  ),
-                )
-              : const SizedBox()
         ],
       ),
     );

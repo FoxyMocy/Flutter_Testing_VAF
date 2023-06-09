@@ -1,7 +1,12 @@
 part of './components.dart';
 
 class CustomListRSItem extends StatelessWidget {
-  const CustomListRSItem({super.key});
+  String name, address, image;
+  CustomListRSItem(
+      {required this.name,
+      required this.address,
+      required this.image,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +21,9 @@ class CustomListRSItem extends StatelessWidget {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-                border: Border.all(
-              width: 1,
-            )),
+                borderRadius: BorderRadius.circular(6),
+                image: DecorationImage(
+                    image: AssetImage(image), fit: BoxFit.cover)),
           ),
           Expanded(
               child: Padding(
@@ -29,7 +34,7 @@ class CustomListRSItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Nama Rumah Sakit",
+                  name,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: AppColors().black,
@@ -38,7 +43,7 @@ class CustomListRSItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Alamat Rumah Sakit",
+                  address,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: AppColors().grey,

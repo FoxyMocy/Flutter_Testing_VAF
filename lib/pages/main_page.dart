@@ -6,7 +6,7 @@ class MainPage extends StatelessWidget {
       Get.put(BottomNavigationController());
 
   final List<Widget> _screens = [
-    const HomePage(),
+    HomePage(),
     const HospitalPage(),
     const ClinicPage(),
     const ProfilePage(),

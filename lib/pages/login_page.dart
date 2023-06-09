@@ -6,9 +6,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginController _loginController = Get.put(loginController());
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController phoneNumberController = TextEditingController();
     final _formKey = GlobalKey<FormState>();
     // RxBool isLogin = true.obs;
 
@@ -23,26 +20,24 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(color: AppColors().black),
               ),
             )),
-        body: Obx(
-          () => Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AppImages().vafLogo,
-                  height: 100,
-                ),
-                Padding(
+        body: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                AppImages().vafLogo,
+                height: 100,
+              ),
+              Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                   ),
-                  child: Form(
+                  child: Obx(() => Form(
                       key: _formKey,
                       child: Column(
                         children: [
                           // EMAIL INPUT
                           CustomTextField(
-                              isPassword: false,
                               validate: _loginController.validateEmail,
                               onchange: _loginController.setEmail,
                               hintText: "Email",
@@ -54,7 +49,6 @@ class LoginPage extends StatelessWidget {
                           // PHONE NUMBER INPUT
                           !_loginController.isRegister.value
                               ? CustomTextField(
-                                  isPassword: false,
                                   validate: _loginController.validatePhone,
                                   onchange: _loginController.setPhone,
                                   hintText: "Phone Number",
@@ -65,46 +59,78 @@ class LoginPage extends StatelessWidget {
                             height: 12,
                           ),
                           // PASSWORD INPUT
-                          CustomTextField(
-                            isPassword: true,
-                            validate: _loginController.validatePassword,
-                            onchange: _loginController.setPassword,
-                            hintText: "Password",
-                            inputType: TextInputType.text,
-                            icon: Icons.lock_rounded,
+                          Container(
+                            padding: const EdgeInsets.only(
+                                right: 20, top: 10, bottom: 10, left: 6),
+                            decoration: BoxDecoration(
+                              border:
+                                  Border.all(width: 1, color: AppColors().grey),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.lock_rounded,
+                                  color: AppColors().lightBlue,
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Expanded(
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.text,
+                                    obscureText:
+                                        _loginController.obsecureText.value,
+                                    decoration: InputDecoration.collapsed(
+                                      hintText: 'Password',
+                                    ),
+                                    validator:
+                                        _loginController.validatePassword,
+                                    onChanged: _loginController.setPassword,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    _loginController.toggleObsecure();
+                                  },
+                                  child: Icon(
+                                    _loginController.obsecureText.value
+                                        ? Icons.visibility_off_rounded
+                                        : Icons.visibility_rounded,
+                                    color: AppColors().lightBlue,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           !_loginController.isLoading.value
-                              ? TextButton(
-                                  onPressed: () {
-                                    final email = emailController.text;
-                                    final password = passwordController.text;
-                                    final fullname = phoneNumberController.text;
-                                    if (_formKey.currentState?.validate() ??
-                                        false) {
-                                      
-                                      _loginController.login();
-                                    }
-                                  },
-                                  style: TextButton.styleFrom(
-                                      minimumSize:
-                                          const Size(double.infinity, 40),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      backgroundColor: AppColors().lightBlue),
-                                  child: Text(
-                                    !_loginController.isRegister.value
-                                        ? "Register"
-                                        : "Login",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors().white,
-                                        fontSize: 16),
-                                  ),
-                                )
+                              ? Obx(() => TextButton(
+                                    onPressed: () {
+                                      if (_formKey.currentState?.validate() ??
+                                          false) {
+                                        _loginController.login();
+                                      }
+                                    },
+                                    style: TextButton.styleFrom(
+                                        minimumSize:
+                                            const Size(double.infinity, 40),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                        backgroundColor: AppColors().lightBlue),
+                                    child: Text(
+                                      !_loginController.isRegister.value
+                                          ? "Register"
+                                          : "Login",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors().white,
+                                          fontSize: 16),
+                                    ),
+                                  ))
                               : const Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -115,37 +141,34 @@ class LoginPage extends StatelessWidget {
                                   ],
                                 ),
                         ],
-                      )),
-                ),
-                const Spacer(),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(_loginController.isRegister.value
-                          ? "Don't have an account?"
-                          : "Already have an account ?"),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          _loginController.isRegisterValue();
-                          print(_loginController.isRegister.value);
-                        },
-                        child: Text(
-                          _loginController.isRegister.value
-                              ? "Register"
-                              : "Login",
-                          style: TextStyle(color: AppColors().lightBlue),
+                      )))),
+              const Spacer(),
+              Obx(() => Container(
+                    margin: const EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(_loginController.isRegister.value
+                            ? "Don't have an account?"
+                            : "Already have an account ?"),
+                        const SizedBox(
+                          width: 5,
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                        GestureDetector(
+                          onTap: () {
+                            _loginController.isRegisterValue();
+                          },
+                          child: Text(
+                            _loginController.isRegister.value
+                                ? "Register"
+                                : "Login",
+                            style: TextStyle(color: AppColors().lightBlue),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ))
+            ],
           ),
         ));
   }
