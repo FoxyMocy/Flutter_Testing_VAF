@@ -1,16 +1,13 @@
-# Testing_VAF
+# Testing VAF
+Hi, My name is Aldi Jayadi. Welcome to my personal Repository. This Personal Project for code test with Valbury.
 
-A new Flutter project.
+## Visit my Play Store
+- [Play_Store](https://play.google.com/store/apps/dev?id=5028283504980652787)
 
-## Getting Started
+## Acknowledgements
+This app was built using the following open-source packages:
 
-This project is a starting point for a Flutter application.
+- [Flutter](https://flutter.dev/)
+- [Google Fonts](https://pub.dev/packages/google_fonts)
+- [GetX](https://pub.dev/packages/get)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
