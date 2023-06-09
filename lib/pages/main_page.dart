@@ -24,15 +24,15 @@ class MainPage extends StatelessWidget {
           onTap: _bottomNavigationController.changePage,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_rounded),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.local_hospital_rounded),
               label: 'RS',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.local_hospital_rounded),
               label: 'Klinik',
             ),
             BottomNavigationBarItem(
