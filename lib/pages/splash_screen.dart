@@ -6,11 +6,6 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 2), () {
-      // if (_authController.currentUser.value != null) {
-      //   Get.offAll(HomeScreen());
-      // } else {
-      //   Get.offAll(LoginScreen());
-      // }
       Get.offAllNamed('/login');
     });
 
